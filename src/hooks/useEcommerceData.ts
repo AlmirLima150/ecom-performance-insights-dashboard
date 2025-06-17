@@ -105,6 +105,7 @@ export const useEcommerceData = () => {
   }, []);
 
   const getFilteredPedidos = (filters: FilterState) => {
+
   console.log('Aplicando filtros:', filters);
   
   return pedidos.filter(pedido => {

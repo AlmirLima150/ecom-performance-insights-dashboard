@@ -46,7 +46,9 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
+
           <BarChart data={data} layout="vertical">
+
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
               type="number"

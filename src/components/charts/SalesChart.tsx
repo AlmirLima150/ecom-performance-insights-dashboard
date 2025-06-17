@@ -8,41 +8,33 @@ interface SalesChartProps {
 }
 
 export function SalesChart({ pedidos }: SalesChartProps) {
-  // Agrupar vendas por mês/ano
-  const salesByMonth = pedidos.reduce((acc, pedido) => {
-    const date = new Date(pedido.data_pedido);
-    const monthYear = `${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
-    
-    if (!acc[monthYear]) {
-      acc[monthYear] = { 
-        monthYear, 
-        value: 0, 
-        orders: 0,
-        displayDate: date.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
-      };
+  // Agrupar vendas por data
+  const salesByDate = pedidos.reduce((acc, pedido) => {
+    const date = new Date(pedido.data_pedido).toLocaleDateString('pt-BR');
+    if (!acc[date]) {
+      acc[date] = { date, value: 0, orders: 0 };
     }
-    acc[monthYear].value += pedido.valor_total;
-    acc[monthYear].orders += 1;
+    acc[date].value += pedido.valor_total;
+    acc[date].orders += 1;
     return acc;
-  }, {} as Record<string, { monthYear: string; value: number; orders: number; displayDate: string }>);
+  }, {} as Record<string, { date: string; value: number; orders: number }>);
 
-  const data = Object.values(salesByMonth).sort((a, b) => {
-    const [monthA, yearA] = a.monthYear.split('/').map(Number);
-    const [monthB, yearB] = b.monthYear.split('/').map(Number);
-    return new Date(yearA, monthA - 1).getTime() - new Date(yearB, monthB - 1).getTime();
-  });
+  const data = Object.values(salesByDate).sort((a, b) => 
+    new Date(a.date.split('/').reverse().join('/')).getTime() - 
+    new Date(b.date.split('/').reverse().join('/')).getTime()
+  );
 
   return (
     <Card className="shadow-lg border-0 animate-fade-in">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-900">Vendas por Mês</CardTitle>
+        <CardTitle className="text-lg font-semibold text-gray-900">Vendas ao Longo do Tempo</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
-              dataKey="displayDate" 
+              dataKey="date" 
               stroke="#666"
               fontSize={12}
             />
@@ -53,7 +45,7 @@ export function SalesChart({ pedidos }: SalesChartProps) {
             />
             <Tooltip 
               formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR')}`, 'Faturamento']}
-              labelFormatter={(label) => `Período: ${label}`}
+              labelFormatter={(label) => `Data: ${label}`}
               contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',

@@ -7,9 +7,6 @@ import { KPICard } from './KPICard';
 import { SalesChart } from './charts/SalesChart';
 import { ProductChart } from './charts/ProductChart';
 import { PaymentChart } from './charts/PaymentChart';
-import { UTMSourceChart } from './charts/UTMSourceChart';
-import { UTMMediumChart } from './charts/UTMMediumChart';
-import { UTMCampaignChart } from './charts/UTMCampaignChart';
 import { OrdersTable } from './tables/OrdersTable';
 import { useEcommerceData } from '@/hooks/useEcommerceData';
 import { FilterState } from '@/types/dashboard';
@@ -97,7 +94,7 @@ export function Dashboard() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'pedidos-versado.csv';
+    a.download = 'pedidos-dashboard.csv';
     a.click();
     window.URL.revokeObjectURL(url);
     
@@ -145,16 +142,9 @@ export function Dashboard() {
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <SidebarTrigger className="bg-white border border-gray-200 hover:bg-gray-50" />
-              <div className="flex items-center space-x-4">
-                <img 
-                  src="/lovable-uploads/5f18d296-5da5-45e9-8805-523d0012af3c.png" 
-                  alt="Versado Logo" 
-                  className="h-8 w-auto"
-                />
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Dashboard Versado</h1>
-                  <p className="text-gray-600">Análise de performance e insights de vendas</p>
-                </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Dashboard E-commerce</h1>
+                <p className="text-gray-600">Análise de performance e insights de vendas</p>
               </div>
             </div>
             <Button onClick={exportToCSV} className="bg-blue-600 hover:bg-blue-700">
@@ -194,7 +184,7 @@ export function Dashboard() {
                   className="bg-gradient-to-r from-purple-50 to-purple-100"
                 />
                 <KPICard
-                  title="Margem de Lucro"
+                  title="Margem"
                   value={`${kpis.margem.toFixed(1)}%`}
                   subtitle={`ROI: ${kpis.roi.toFixed(1)}%`}
                   icon={<CirclePercentIcon className="h-6 w-6 text-orange-600" />}
@@ -202,24 +192,16 @@ export function Dashboard() {
                 />
               </div>
 
-              {/* Gráficos Principais */}
+              {/* Gráficos */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <SalesChart pedidos={filteredPedidos} />
                 <ProductChart pedidos={filteredPedidos} produtos={produtos} />
               </div>
 
-              {/* Gráficos de UTMs */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <UTMSourceChart pedidos={filteredPedidos} />
-                <UTMMediumChart pedidos={filteredPedidos} />
-                <UTMCampaignChart pedidos={filteredPedidos} />
-              </div>
-
-              {/* Gráficos Complementares */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <PaymentChart pedidos={filteredPedidos} />
                 <div className="bg-white p-6 rounded-lg shadow-lg border-0 animate-fade-in">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Resumo de Performance</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Resumo de Clientes</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Total de Clientes:</span>
@@ -230,12 +212,8 @@ export function Dashboard() {
                       <span className="font-semibold">{kpis.produtosVendidos}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">ROAS (Return on Ad Spend):</span>
+                      <span className="text-gray-600">ROAS:</span>
                       <span className="font-semibold">{kpis.roas.toFixed(2)}x</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Margem de Lucro:</span>
-                      <span className="font-semibold text-green-600">{kpis.margem.toFixed(1)}%</span>
                     </div>
                   </div>
                 </div>

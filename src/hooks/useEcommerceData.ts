@@ -170,31 +170,8 @@ export const useEcommerceData = () => {
     // Total de produtos vendidos
     const produtosVendidos = filteredPedidos.reduce((sum, p) => sum + (p.quantidade_itens || 0), 0);
     
-    // Calcular custos reais baseado nos produtos vendidos
-    let custoTotal = 0;
-    
-    filteredPedidos.forEach(pedido => {
-      if (pedido.produtos_vendidos) {
-        const produtosList = pedido.produtos_vendidos.split(',').map(p => p.trim()).filter(p => p);
-        
-        produtosList.forEach(produtoNome => {
-          const produto = produtos.find(p => 
-            p.nome_produto.toLowerCase().includes(produtoNome.toLowerCase())
-          );
-          
-          if (produto && produto.preco_custo) {
-            // Distribui o custo proporcionalmente
-            custoTotal += produto.preco_custo / produtosList.length;
-          } else {
-            // Fallback: assume 60% do valor como custo se não encontrar o produto
-            custoTotal += (pedido.valor_total * 0.6) / produtosList.length;
-          }
-        });
-      } else {
-        // Fallback se não há produtos especificados
-        custoTotal += pedido.valor_total * 0.6;
-      }
-    });
+    // Calcular custos baseado nos produtos (estimativa simples)
+    const custoTotal = faturamentoTotal * 0.6; // Assumindo 60% do valor como custo
     
     // Calcular métricas
     const margem = faturamentoTotal > 0 ? ((faturamentoTotal - custoTotal) / faturamentoTotal) * 100 : 0;

@@ -13,7 +13,7 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
   const productSales = pedidos.reduce((acc, pedido) => {
     if (pedido.produtos_vendidos) {
       // Dividir os produtos vendidos por vírgula e processar cada um
-      const produtosList = pedido.produtos_vendidos.split(',').map(p => p.trim()).filter(p => p);
+      const produtosList = pedido.produtos_vendidos.split(',').map(p => p.trim());
       
       produtosList.forEach(produtoNome => {
         if (!acc[produtoNome]) {
@@ -33,11 +33,7 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
 
   const data = Object.values(productSales)
     .sort((a, b) => b.value - a.value)
-    .slice(0, 10) // Top 10 produtos
-    .map((item, index) => ({
-      ...item,
-      id: `product-${index}` // Adicionar ID único para evitar conflito de keys
-    }));
+    .slice(0, 10); // Top 10 produtos
 
   return (
     <Card className="shadow-lg border-0 animate-fade-in">

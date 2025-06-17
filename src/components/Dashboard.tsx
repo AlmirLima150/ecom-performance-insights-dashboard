@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from 'react';
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from './Sidebar';
@@ -228,14 +227,6 @@ export function Dashboard() {
                     <div className="flex justify-between">
                       <span className="text-gray-600">Produtos Vendidos:</span>
                       <span className="font-semibold">{kpis.produtosVendidos}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">ROAS (Return on Ad Spend):</span>
-                      <span className="font-semibold">{kpis.roas.toFixed(2)}x</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Margem de Lucro:</span>
-                      <span className="font-semibold text-green-600">{kpis.margem.toFixed(1)}%</span>
                     </div>
                   </div>
                 </div>

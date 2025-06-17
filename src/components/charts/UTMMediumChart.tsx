@@ -14,7 +14,8 @@ export function UTMMediumChart({ pedidos }: UTMMediumChartProps) {
     if (!acc[medium]) {
       acc[medium] = { name: medium, value: 0, orders: 0 };
     }
-    acc[medium].value += pedido.valor_total;
+    // Corrigindo valores que estavam em centavos
+    acc[medium].value += pedido.valor_total / 100;
     acc[medium].orders += 1;
     return acc;
   }, {} as Record<string, { name: string; value: number; orders: number }>);
@@ -43,10 +44,10 @@ export function UTMMediumChart({ pedidos }: UTMMediumChartProps) {
             <YAxis 
               stroke="#666"
               fontSize={12}
-              tickFormatter={(value) => `R$ ${value.toLocaleString('pt-BR')}`}
+              tickFormatter={(value) => `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
             />
             <Tooltip 
-              formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR')}`, 'Faturamento']}
+              formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Faturamento']}
               labelFormatter={(label) => `Mídia: ${label}`}
               contentStyle={{
                 backgroundColor: 'white',

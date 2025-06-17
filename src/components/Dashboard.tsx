@@ -42,10 +42,15 @@ export function Dashboard() {
     const canaisSet = new Set<string>();
     const statusSet = new Set<string>();
 
-    // Extrair produtos únicos
-    produtos.forEach(produto => {
-      if (produto.nome_produto) {
-        produtosSet.add(produto.nome_produto);
+    // Extrair produtos únicos dos pedidos
+    pedidos.forEach(pedido => {
+      if (pedido.produtos_vendidos) {
+        const produtosList = pedido.produtos_vendidos.split(',').map(p => p.trim());
+        produtosList.forEach(produto => {
+          if (produto) {
+            produtosSet.add(produto);
+          }
+        });
       }
     });
 

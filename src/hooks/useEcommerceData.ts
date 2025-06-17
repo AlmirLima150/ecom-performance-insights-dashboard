@@ -8,6 +8,47 @@ const DATA_URLS = {
   produtos: 'https://raw.githubusercontent.com/AlmirLima150/dados-para-dashboard/refs/heads/main/produtos.json'
 };
 
+// Mapear dados dos JSONs para nossa estrutura
+const mapPedidoData = (pedidoRaw: any): Pedido => ({
+  data_pedido: pedidoRaw["Data do Pedido"],
+  numero_pedido: pedidoRaw["Nº Pedido"],
+  id_cliente: pedidoRaw["id_cliente"],
+  nome_cliente: pedidoRaw["Cliente"],
+  status: pedidoRaw["Status"],
+  valor_total: parseFloat(pedidoRaw["Valor Total "] || "0"),
+  quantidade_itens: parseInt(pedidoRaw["Qtd Itens"] || "0"),
+  forma_pagamento: pedidoRaw["Forma de Pagamento"],
+  cupom_usado: pedidoRaw["Cupom Usado"],
+  utm_source: pedidoRaw["utm_source"],
+  utm_medium: pedidoRaw["utm_medium"],
+  utm_campaign: pedidoRaw["utm_campaign"],
+  utm_content: pedidoRaw["utm_content"],
+  utm_term: pedidoRaw["utm_term"],
+  origem_url: pedidoRaw["origem"],
+  produtos_vendidos: pedidoRaw["produto(s)"],
+  categoria: pedidoRaw["categoria"]
+});
+
+const mapClienteData = (clienteRaw: any): Cliente => ({
+  id_cliente: clienteRaw["ID do Cliente"],
+  nome: clienteRaw["Nome"],
+  email: clienteRaw["E-mail"],
+  telefone: clienteRaw["Telefone"],
+  data_nascimento: clienteRaw["Data de nascimento"],
+  cidade: clienteRaw["Cidade"],
+  estado: clienteRaw["Estado"],
+  endereco_completo: clienteRaw["Endereço"]
+});
+
+const mapProdutoData = (produtoRaw: any): Produto => ({
+  id_produto: produtoRaw["ID do Produto"],
+  nome_produto: produtoRaw["Nome do Produto"],
+  categoria: produtoRaw["Categoria"],
+  preco: parseFloat(produtoRaw["Preço"] || "0"),
+  preco_custo: parseFloat(produtoRaw["Preço de Custo"] || "0"),
+  estoque: parseInt(produtoRaw["Estoque"] || "0")
+});
+
 export const useEcommerceData = () => {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
   const [clientes, setClientes] = useState<Cliente[]>([]);
@@ -37,15 +78,20 @@ export const useEcommerceData = () => {
           produtosRes.json()
         ]);
 
-        console.log('Dados carregados:', {
-          pedidos: pedidosData.length,
-          clientes: clientesData.length,
-          produtos: produtosData.length
+        // Os dados vêm dentro de um array com um objeto que contém os arrays reais
+        const pedidosMapeados = pedidosData[0].pedidos.map(mapPedidoData);
+        const clientesMapeados = clientesData[0].clientes.map(mapClienteData);
+        const produtosMapeados = produtosData[0].produtos.map(mapProdutoData);
+
+        console.log('Dados mapeados:', {
+          pedidos: pedidosMapeados.length,
+          clientes: clientesMapeados.length,
+          produtos: produtosMapeados.length
         });
 
-        setPedidos(pedidosData);
-        setClientes(clientesData);
-        setProdutos(produtosData);
+        setPedidos(pedidosMapeados);
+        setClientes(clientesMapeados);
+        setProdutos(produtosMapeados);
         setError(null);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Erro desconhecido');
@@ -73,17 +119,10 @@ export const useEcommerceData = () => {
         }
       }
 
-      // Filtro de produto - verificar se o produto está na lista de produtos vendidos
+      // Filtro de produto
       if (filters.produto) {
-        const produtosVendidos = pedido.produtos_vendidos ? 
-          pedido.produtos_vendidos.split(',').map(id => id.trim()) : [];
-        
-        const produtoEncontrado = produtosVendidos.some(produtoId => {
-          const produto = produtos.find(p => p.id_produto === produtoId);
-          return produto && produto.nome_produto.toLowerCase().includes(filters.produto.toLowerCase());
-        });
-
-        if (!produtoEncontrado) {
+        if (!pedido.produtos_vendidos || 
+            !pedido.produtos_vendidos.toLowerCase().includes(filters.produto.toLowerCase())) {
           return false;
         }
       }
@@ -131,20 +170,9 @@ export const useEcommerceData = () => {
     // Total de produtos vendidos
     const produtosVendidos = filteredPedidos.reduce((sum, p) => sum + (p.quantidade_itens || 0), 0);
     
-    // Calcular custos baseado nos produtos vendidos
-    let custoTotal = 0;
-    filteredPedidos.forEach(pedido => {
-      if (pedido.produtos_vendidos) {
-        const produtosIds = pedido.produtos_vendidos.split(',').map(id => id.trim());
-        produtosIds.forEach(produtoId => {
-          const produto = produtos.find(p => p.id_produto === produtoId);
-          if (produto && produto.preco_custo) {
-            custoTotal += produto.preco_custo;
-          }
-        });
-      }
-    });
-
+    // Calcular custos baseado nos produtos (estimativa simples)
+    const custoTotal = faturamentoTotal * 0.6; // Assumindo 60% do valor como custo
+    
     // Calcular métricas
     const margem = faturamentoTotal > 0 ? ((faturamentoTotal - custoTotal) / faturamentoTotal) * 100 : 0;
     const roas = custoTotal > 0 ? faturamentoTotal / custoTotal : 0;

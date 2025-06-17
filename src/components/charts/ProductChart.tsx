@@ -9,24 +9,27 @@ interface ProductChartProps {
 }
 
 export function ProductChart({ pedidos, produtos }: ProductChartProps) {
-  // Contar vendas por produto
+  // Contar vendas por produto baseado no campo produtos_vendidos
   const productSales = pedidos.reduce((acc, pedido) => {
-    const produtosIds = pedido.produtos_vendidos.split(',').map(id => id.trim());
-    produtosIds.forEach(produtoId => {
-      if (!acc[produtoId]) {
-        const produto = produtos.find(p => p.id_produto === produtoId);
-        acc[produtoId] = {
-          id: produtoId,
-          name: produto?.nome_produto || `Produto ${produtoId}`,
-          value: 0,
-          quantity: 0
-        };
-      }
-      acc[produtoId].value += pedido.valor_total / produtosIds.length; // Distribui o valor proporcionalmente
-      acc[produtoId].quantity += 1;
-    });
+    if (pedido.produtos_vendidos) {
+      // Dividir os produtos vendidos por vírgula e processar cada um
+      const produtosList = pedido.produtos_vendidos.split(',').map(p => p.trim());
+      
+      produtosList.forEach(produtoNome => {
+        if (!acc[produtoNome]) {
+          acc[produtoNome] = {
+            name: produtoNome,
+            value: 0,
+            quantity: 0
+          };
+        }
+        // Distribui o valor proporcionalmente entre os produtos do pedido
+        acc[produtoNome].value += pedido.valor_total / produtosList.length;
+        acc[produtoNome].quantity += 1;
+      });
+    }
     return acc;
-  }, {} as Record<string, { id: string; name: string; value: number; quantity: number }>);
+  }, {} as Record<string, { name: string; value: number; quantity: number }>);
 
   const data = Object.values(productSales)
     .sort((a, b) => b.value - a.value)
@@ -52,7 +55,7 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
               dataKey="name" 
               stroke="#666"
               fontSize={12}
-              width={120}
+              width={150}
             />
             <Tooltip 
               formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR')}`, 'Faturamento']}

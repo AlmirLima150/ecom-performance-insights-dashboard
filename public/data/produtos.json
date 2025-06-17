@@ -1,0 +1,606 @@
+[
+  {
+    "produtos": [
+      {
+        "ID do Produto": "185890",
+        "Nome do Produto": "Curso Filtrado I",
+        "Categoria": "SI4ZO9",
+        "Preço": "350"
+      },
+      {
+        "ID do Produto": "185905",
+        "Nome do Produto": "Curso Filtrado I",
+        "Categoria": "CA6GO8",
+        "Preço": ""
+      },
+      {
+        "ID do Produto": "185906",
+        "Nome do Produto": "Curso Sensorial I",
+        "Categoria": "NU1QO7",
+        "Preço": "250"
+      },
+      {
+        "ID do Produto": "191040",
+        "Nome do Produto": "Filtro Chemex Meia Lua Branco 100und",
+        "Categoria": "TI5GE5",
+        "Preço": "139"
+      },
+      {
+        "ID do Produto": "191041",
+        "Nome do Produto": "Filtro Chemex Pré-Dobrado Branco 100und",
+        "Categoria": "BU7PO1",
+        "Preço": "156"
+      },
+      {
+        "ID do Produto": "191042",
+        "Nome do Produto": "Filtro Koar Branco 50und",
+        "Categoria": "WI3MO1",
+        "Preço": "36"
+      },
+      {
+        "ID do Produto": "191043",
+        "Nome do Produto": "Filtro V60-01 Branco 100und",
+        "Categoria": "GA2CE4",
+        "Preço": "48"
+      },
+      {
+        "ID do Produto": "191147",
+        "Nome do Produto": "Curso Barista Operacional I",
+        "Categoria": "FE1YA3",
+        "Preço": "750"
+      },
+      {
+        "ID do Produto": "206830",
+        "Nome do Produto": "Kit Craft V60",
+        "Categoria": "JU5FU5",
+        "Preço": "233"
+      },
+      {
+        "ID do Produto": "206919",
+        "Nome do Produto": "Filtro Branco Aeropress 350 unidades",
+        "Categoria": "GA9RA7",
+        "Preço": "63"
+      },
+      {
+        "ID do Produto": "207039",
+        "Nome do Produto": "Filtro Clever G 100und",
+        "Categoria": "QA3RI8",
+        "Preço": "82"
+      },
+      {
+        "ID do Produto": "207042",
+        "Nome do Produto": "Filtro Clever P 100 unid",
+        "Categoria": "GO6NO4",
+        "Preço": "62"
+      },
+      {
+        "ID do Produto": "207070",
+        "Nome do Produto": "Clever P",
+        "Categoria": "CI1NO9",
+        "Preço": "270"
+      },
+      {
+        "ID do Produto": "207071",
+        "Nome do Produto": "Clever Grande 500ml",
+        "Categoria": "VU4RA1",
+        "Preço": "270"
+      },
+      {
+        "ID do Produto": "207089",
+        "Nome do Produto": "Moedor Hario Slim",
+        "Categoria": "RA7NA5",
+        "Preço": "390"
+      },
+      {
+        "ID do Produto": "212637",
+        "Nome do Produto": "Hario V60-01 de acrílico",
+        "Categoria": "MU8GO7",
+        "Preço": "65"
+      },
+      {
+        "ID do Produto": "212638",
+        "Nome do Produto": "Hario V60-01 de cerâmica vermelho",
+        "Categoria": "CU1WI2",
+        "Preço": "190"
+      },
+      {
+        "ID do Produto": "212645",
+        "Nome do Produto": "Hario V60-01 vermelho",
+        "Categoria": "PO8GU5",
+        "Preço": "65"
+      },
+      {
+        "ID do Produto": "212647",
+        "Nome do Produto": "Hario V60-02 branco",
+        "Categoria": "KE7BA9",
+        "Preço": "75"
+      },
+      {
+        "ID do Produto": "212649",
+        "Nome do Produto": "Hario V60-02 vermelho",
+        "Categoria": "RA9GI9",
+        "Preço": "75"
+      },
+      {
+        "ID do Produto": "212651",
+        "Nome do Produto": "Hario V60-02 de acrílico",
+        "Categoria": "QU6LA4",
+        "Preço": "75"
+      },
+      {
+        "ID do Produto": "212658",
+        "Nome do Produto": "Hario V60-02 de vidro",
+        "Categoria": "KU6DI1",
+        "Preço": "165"
+      },
+      {
+        "ID do Produto": "213797",
+        "Nome do Produto": "Espumador Pressca",
+        "Categoria": "RU9KO8",
+        "Preço": "70"
+      },
+      {
+        "ID do Produto": "213814",
+        "Nome do Produto": "Cafeteira Pressca",
+        "Categoria": "YO5VO2",
+        "Preço": "145"
+      },
+      {
+        "ID do Produto": "213817",
+        "Nome do Produto": "Chaleira Fpro Inox 350ml",
+        "Categoria": "VE5YA5",
+        "Preço": "160"
+      },
+      {
+        "ID do Produto": "213819",
+        "Nome do Produto": "Chaleira Aço Inox Hario Buono 1,2L",
+        "Categoria": "FU6CI2",
+        "Preço": "680"
+      },
+      {
+        "ID do Produto": "213823",
+        "Nome do Produto": "Chaleira Aço Inox Hario Buono 1L",
+        "Categoria": "QU6LO7",
+        "Preço": "470"
+      },
+      {
+        "ID do Produto": "213826",
+        "Nome do Produto": "Chaleira Fpro Inox 700ml",
+        "Categoria": "QU4FO6",
+        "Preço": "250"
+      },
+      {
+        "ID do Produto": "213831",
+        "Nome do Produto": "Chaleira Pescoço de ganso 500ml",
+        "Categoria": "SO5GO9",
+        "Preço": "225"
+      },
+      {
+        "ID do Produto": "213838",
+        "Nome do Produto": "BALANCA DOSE CERTA PRESSCA",
+        "Categoria": "YA1PI5",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "261429",
+        "Nome do Produto": "BOLO DE CHOCOLATE - 250G",
+        "Categoria": "PA3SE2",
+        "Preço": "47"
+      },
+      {
+        "ID do Produto": "261469",
+        "Nome do Produto": "Filtro V60-02 Branco 100unid",
+        "Categoria": "QO4CU9",
+        "Preço": "59"
+      },
+      {
+        "ID do Produto": "261505",
+        "Nome do Produto": "Ziclips",
+        "Categoria": "PE6YE5",
+        "Preço": "7"
+      },
+      {
+        "ID do Produto": "262945",
+        "Nome do Produto": "Kit Koar de Acrílico + Filtro (50und)",
+        "Categoria": "BU5LE5",
+        "Preço": "80"
+      },
+      {
+        "ID do Produto": "277086",
+        "Nome do Produto": "BOLO DE CHOCOLATE - 1KG",
+        "Categoria": "WE6BI8",
+        "Preço": "139"
+      },
+      {
+        "ID do Produto": "319813",
+        "Nome do Produto": "Kit Hario V60 - Vermelho",
+        "Categoria": "RA2XO5",
+        "Preço": ""
+      },
+      {
+        "ID do Produto": "319860",
+        "Nome do Produto": "Koar de Cerâmica",
+        "Categoria": "BU1BA4",
+        "Preço": "215"
+      },
+      {
+        "ID do Produto": "319888",
+        "Nome do Produto": "Aeropress",
+        "Categoria": "CI8LA2",
+        "Preço": "395"
+      },
+      {
+        "ID do Produto": "337842",
+        "Nome do Produto": "Chemex - 3 Xícaras",
+        "Categoria": "XOU1HEI8",
+        "Preço": "462"
+      },
+      {
+        "ID do Produto": "337853",
+        "Nome do Produto": "Chemex - 6 Xícaras",
+        "Categoria": "TEI3WAE4",
+        "Preço": "580"
+      },
+      {
+        "ID do Produto": "337854",
+        "Nome do Produto": "Chemex - 8 Xícaras",
+        "Categoria": "JEI1YOU9",
+        "Preço": "590"
+      },
+      {
+        "ID do Produto": "340357",
+        "Nome do Produto": "Chaleira Bico de Ganso 700ml",
+        "Categoria": "QOU4WAE5",
+        "Preço": "260"
+      },
+      {
+        "ID do Produto": "340393",
+        "Nome do Produto": "PRENSA FRANCESA - 350ml",
+        "Categoria": "WU7NAE2",
+        "Preço": "61"
+      },
+      {
+        "ID do Produto": "340406",
+        "Nome do Produto": "Balança Fpro",
+        "Categoria": "VU6NUA7",
+        "Preço": "420"
+      },
+      {
+        "ID do Produto": "340532",
+        "Nome do Produto": "Balança Hario Drip Station",
+        "Categoria": "YOU2KAE6",
+        "Preço": "600"
+      },
+      {
+        "ID do Produto": "341041",
+        "Nome do Produto": "Prensa Francesa 350ml - Inox",
+        "Categoria": "VUA5FEI3",
+        "Preço": "109"
+      },
+      {
+        "ID do Produto": "341071",
+        "Nome do Produto": "Prensa Francesa 300ml",
+        "Categoria": "ZOU7POU3",
+        "Preço": "85"
+      },
+      {
+        "ID do Produto": "343955",
+        "Nome do Produto": "Coador de Pano",
+        "Categoria": "NEI1TIO9",
+        "Preço": "27"
+      },
+      {
+        "ID do Produto": "345567",
+        "Nome do Produto": "Prensa Francesa 600ml - Bambu",
+        "Categoria": "RIO6YIO4",
+        "Preço": "140"
+      },
+      {
+        "ID do Produto": "359149",
+        "Nome do Produto": "Koar de Porcelana",
+        "Categoria": "JU1VOU9",
+        "Preço": "215"
+      },
+      {
+        "ID do Produto": "366483",
+        "Nome do Produto": "Moka 1 Xícara",
+        "Categoria": "GUA6DAE7",
+        "Preço": "207"
+      },
+      {
+        "ID do Produto": "366485",
+        "Nome do Produto": "Moka 3 Xícaras",
+        "Categoria": "MEI6TOU8",
+        "Preço": "251"
+      },
+      {
+        "ID do Produto": "366488",
+        "Nome do Produto": "Moka 6 Xícaras",
+        "Categoria": "JAE4QEI4",
+        "Preço": "312"
+      },
+      {
+        "ID do Produto": "407025",
+        "Nome do Produto": "Filtro V60-02 Branco 40und",
+        "Categoria": "RIO5YAE2",
+        "Preço": "34"
+      },
+      {
+        "ID do Produto": "450426",
+        "Nome do Produto": "Copo Térmico Parede Dupla Versado - Preto",
+        "Categoria": "MEI9MOU9",
+        "Preço": "90"
+      },
+      {
+        "ID do Produto": "486310",
+        "Nome do Produto": "Caneca Versado - 260ml",
+        "Categoria": "BU7CAE6",
+        "Preço": "47"
+      },
+      {
+        "ID do Produto": "537243",
+        "Nome do Produto": "Lata Versado Secagem",
+        "Categoria": "SAE8VAE9",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "604169",
+        "Nome do Produto": "Caneca Versado 150ml",
+        "Categoria": "DEI4WAE9",
+        "Preço": "38"
+      },
+      {
+        "ID do Produto": "775657",
+        "Nome do Produto": "Filtro Koar 02 Branco 100und",
+        "Categoria": "JIO2DUA7",
+        "Preço": "60"
+      },
+      {
+        "ID do Produto": "1209867",
+        "Nome do Produto": "Koar de Acrilico",
+        "Categoria": "NOU2JAE8",
+        "Preço": "57"
+      },
+      {
+        "ID do Produto": "1210018",
+        "Nome do Produto": "Decanter Koar",
+        "Categoria": "QAE6MAE5",
+        "Preço": "130"
+      },
+      {
+        "ID do Produto": "1309098",
+        "Nome do Produto": "Filtro de pano Aeropress - Fabrikafe",
+        "Categoria": "JUA4LIO1",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343762",
+        "Nome do Produto": "Filtro de pano Clever pequeno - Fabrikafe",
+        "Categoria": "ZOU2MAE1",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343770",
+        "Nome do Produto": "Filtro de pano Clever Grande - Fabrikafe",
+        "Categoria": "VEI7SIO5",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343772",
+        "Nome do Produto": "Filtro de pano Kalita - Fabrikafe",
+        "Categoria": "NEI2HEI4",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343843",
+        "Nome do Produto": "Filtro de pano Chemex 6 xícaras - Fabrikafe",
+        "Categoria": "VAE7TEI7",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343857",
+        "Nome do Produto": "Filtro de pano Melitta 102 - Fabrikafe",
+        "Categoria": "ROU2GEI3",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343862",
+        "Nome do Produto": "Filtro de pano Melitta 103 - Fabrikafe",
+        "Categoria": "JEI6DOU9",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343880",
+        "Nome do Produto": "Filtro de pano Hario V60-02 - Fabrikafe",
+        "Categoria": "POU5TIO3",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1343881",
+        "Nome do Produto": "Filtro de pano Koar - Fabrikafe",
+        "Categoria": "HAE5SOU8",
+        "Preço": "25"
+      },
+      {
+        "ID do Produto": "1395891",
+        "Nome do Produto": "Suporte de acrílico Koar",
+        "Categoria": "GEI1MEI4",
+        "Preço": "160"
+      },
+      {
+        "ID do Produto": "1398367",
+        "Nome do Produto": "Caneca Versado Copa - 260ml - Amarela e Verde",
+        "Categoria": "GEI9CUA3",
+        "Preço": "47"
+      },
+      {
+        "ID do Produto": "1398737",
+        "Nome do Produto": "Moedor manual Inox 45g",
+        "Categoria": "CAE1DEI7",
+        "Preço": "130"
+      },
+      {
+        "ID do Produto": "1468479",
+        "Nome do Produto": "PAR DE XÍCARAS - PAREDE DUPLA",
+        "Categoria": "LOU9REI9",
+        "Preço": "64"
+      },
+      {
+        "ID do Produto": "1468497",
+        "Nome do Produto": "PAR DE COPOS - PAREDE DUPLA",
+        "Categoria": "CIO6COU8",
+        "Preço": "55"
+      },
+      {
+        "ID do Produto": "1476851",
+        "Nome do Produto": "Hario V60-01 branco",
+        "Categoria": "DIO1FIO1",
+        "Preço": "65"
+      },
+      {
+        "ID do Produto": "1477251",
+        "Nome do Produto": "Handy Brew  500ml",
+        "Categoria": "SEI1BAE3",
+        "Preço": "250"
+      },
+      {
+        "ID do Produto": "1499158",
+        "Nome do Produto": "Chaleira elétrica Cadence 1,7L",
+        "Categoria": "RAE8VOU6",
+        "Preço": "152"
+      },
+      {
+        "ID do Produto": "1499178",
+        "Nome do Produto": "Chaleira bico fino 700ml",
+        "Categoria": "DAE5SUA1",
+        "Preço": "222"
+      },
+      {
+        "ID do Produto": "1499206",
+        "Nome do Produto": "Filtro Kalita F185 50und",
+        "Categoria": "YEI2ZUA6",
+        "Preço": "68"
+      },
+      {
+        "ID do Produto": "1499233",
+        "Nome do Produto": "Leiteira inox Mimo style 600ml",
+        "Categoria": "TOU6GAE9",
+        "Preço": "120"
+      },
+      {
+        "ID do Produto": "1499254",
+        "Nome do Produto": "Jarra de vidro com tampa",
+        "Categoria": "CUA3BUA6",
+        "Preço": "103"
+      },
+      {
+        "ID do Produto": "1629103",
+        "Nome do Produto": "Filtro V60-03 Branco 40und",
+        "Categoria": "63fa4e7974c3c",
+        "Preço": "53"
+      },
+      {
+        "ID do Produto": "1671573",
+        "Nome do Produto": "Capsula de gás para Sifão",
+        "Categoria": "6410aa0d9b800",
+        "Preço": "45"
+      },
+      {
+        "ID do Produto": "1962631",
+        "Nome do Produto": "Koar Glass",
+        "Categoria": "649dbf9ca8ab2",
+        "Preço": "181"
+      },
+      {
+        "ID do Produto": "2066729",
+        "Nome do Produto": "Kit Koar de Acrílico + Filtro (50und) + Café Versado Sul de Minas",
+        "Categoria": "64d13f3223242",
+        "Preço": "99"
+      },
+      {
+        "ID do Produto": "2281943",
+        "Nome do Produto": "Aeropress Go",
+        "Categoria": "6532dfc19e706",
+        "Preço": "459"
+      },
+      {
+        "ID do Produto": "2575105",
+        "Nome do Produto": "FRUTAS VERMELHAS - 250g",
+        "Categoria": "65c0f0b6a7738",
+        "Preço": "53"
+      },
+      {
+        "ID do Produto": "2629077",
+        "Nome do Produto": "MASCAVO E LIMÃO - 250g",
+        "Categoria": "65d78ab239a2a",
+        "Preço": "48"
+      },
+      {
+        "ID do Produto": "2697078",
+        "Nome do Produto": "MELAÇO E DAMASCO - 250g",
+        "Categoria": "65f30e7c4bfda",
+        "Preço": "59"
+      },
+      {
+        "ID do Produto": "2845071",
+        "Nome do Produto": "RAPADURA - 250g",
+        "Categoria": "662a8d2796dd2",
+        "Preço": "44"
+      },
+      {
+        "ID do Produto": "2845126",
+        "Nome do Produto": "RAPADURA - 1KG",
+        "Categoria": "662a8fb71102e",
+        "Preço": "125"
+      },
+      {
+        "ID do Produto": "2845235",
+        "Nome do Produto": "MASCAVO E LIMÃO - 1KG",
+        "Categoria": "662a95809768c",
+        "Preço": "130"
+      },
+      {
+        "ID do Produto": "2845343",
+        "Nome do Produto": "UVA - 250g",
+        "Categoria": "662a97ac06b94",
+        "Preço": "49"
+      },
+      {
+        "ID do Produto": "2845431",
+        "Nome do Produto": "FRUTAS SECAS - 250g",
+        "Categoria": "662a9a70c3272",
+        "Preço": "47"
+      },
+      {
+        "ID do Produto": "2845578",
+        "Nome do Produto": "FRUTAS NEGRAS - 250g",
+        "Categoria": "662aa249738e9",
+        "Preço": "58"
+      },
+      {
+        "ID do Produto": "3202081",
+        "Nome do Produto": "LICOR DE CACAU - 250g",
+        "Categoria": "66a3ed8d134e1",
+        "Preço": "52"
+      },
+      {
+        "ID do Produto": "3202102",
+        "Nome do Produto": "CHOCOLATE E MEL - 250g",
+        "Categoria": "66a3ee7781fd2",
+        "Preço": "35"
+      },
+      {
+        "ID do Produto": "3325917",
+        "Nome do Produto": "TANGERINA - 250g",
+        "Categoria": "66cc685bc9e67",
+        "Preço": "58"
+      },
+      {
+        "ID do Produto": "3325926",
+        "Nome do Produto": "MEL - 250g",
+        "Categoria": "66cc69bb7d5be",
+        "Preço": "49"
+      }
+    ]
+  }
+]

@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { Pedido, Cliente, Produto, KPIs, FilterState } from '@/types/dashboard';
 
 const DATA_URLS = {
-  pedidos: 'https://raw.githubusercontent.com/AlmirLima150/dados-para-dashboard/refs/heads/main/pedidos.json',
-  clientes: 'https://raw.githubusercontent.com/AlmirLima150/dados-para-dashboard/refs/heads/main/clientes.json',
-  produtos: 'https://raw.githubusercontent.com/AlmirLima150/dados-para-dashboard/refs/heads/main/produtos.json'
+  pedidos: '/data/pedidos.json',
+  clientes: '/data/clientes.json',
+  produtos: '/data/produtos.json'
 };
 
 // Mapear dados dos JSONs para nossa estrutura

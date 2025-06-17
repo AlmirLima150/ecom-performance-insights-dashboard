@@ -24,7 +24,8 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
           };
         }
         // Distribui o valor proporcionalmente entre os produtos do pedido
-        acc[produtoNome].value += pedido.valor_total / produtosList.length;
+        // Corrigindo valores que estavam em centavos
+        acc[produtoNome].value += (pedido.valor_total / 100) / produtosList.length;
         acc[produtoNome].quantity += 1;
       });
     }
@@ -36,7 +37,8 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
     .slice(0, 10) // Top 10 produtos
     .map((item, index) => ({
       ...item,
-      id: `product-${index}` // Adicionar ID único para evitar conflito de keys
+      id: `product-${index}`, // Adicionar ID único para evitar conflito de keys
+      shortName: item.name.length > 25 ? item.name.substring(0, 25) + '...' : item.name
     }));
 
   return (
@@ -52,17 +54,21 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
               type="number"
               stroke="#666"
               fontSize={12}
-              tickFormatter={(value) => `R$ ${value.toLocaleString('pt-BR')}`}
+              tickFormatter={(value) => `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
             />
             <YAxis 
               type="category"
-              dataKey="name" 
+              dataKey="shortName" 
               stroke="#666"
-              fontSize={12}
+              fontSize={11}
               width={150}
             />
             <Tooltip 
-              formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR')}`, 'Faturamento']}
+              formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Faturamento']}
+              labelFormatter={(label, payload) => {
+                const fullName = payload?.[0]?.payload?.name || label;
+                return `Produto: ${fullName}`;
+              }}
               contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',

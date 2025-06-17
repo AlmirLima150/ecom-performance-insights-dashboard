@@ -14,7 +14,8 @@ export function UTMCampaignChart({ pedidos }: UTMCampaignChartProps) {
     if (!acc[campaign]) {
       acc[campaign] = { name: campaign, value: 0, orders: 0 };
     }
-    acc[campaign].value += pedido.valor_total;
+    // Corrigindo valores que estavam em centavos
+    acc[campaign].value += pedido.valor_total / 100;
     acc[campaign].orders += 1;
     return acc;
   }, {} as Record<string, { name: string; value: number; orders: number }>);
@@ -41,7 +42,7 @@ export function UTMCampaignChart({ pedidos }: UTMCampaignChartProps) {
               type="number"
               stroke="#666"
               fontSize={12}
-              tickFormatter={(value) => `R$ ${value.toLocaleString('pt-BR')}`}
+              tickFormatter={(value) => `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
             />
             <YAxis 
               type="category"
@@ -51,7 +52,7 @@ export function UTMCampaignChart({ pedidos }: UTMCampaignChartProps) {
               width={120}
             />
             <Tooltip 
-              formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR')}`, 'Faturamento']}
+              formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`, 'Faturamento']}
               labelFormatter={(label, payload) => {
                 const fullName = payload?.[0]?.payload?.name || label;
                 return `Campanha: ${fullName}`;

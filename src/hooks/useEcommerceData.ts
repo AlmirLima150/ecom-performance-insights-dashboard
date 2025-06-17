@@ -15,6 +15,7 @@ const mapPedidoData = (pedidoRaw: any): Pedido => ({
   id_cliente: pedidoRaw["id_cliente"],
   nome_cliente: pedidoRaw["Cliente"],
   status: pedidoRaw["Status"],
+  // Garantindo que os valores estão em centavos conforme JSON original
   valor_total: parseFloat(pedidoRaw["Valor Total "] || "0"),
   quantidade_itens: parseInt(pedidoRaw["Qtd Itens"] || "0"),
   forma_pagamento: pedidoRaw["Forma de Pagamento"],
@@ -89,6 +90,16 @@ export const useEcommerceData = () => {
           produtos: produtosMapeados.length
         });
 
+        // Log para verificar a distribuição por mês
+        const pedidosPorMes = pedidosMapeados.reduce((acc, pedido) => {
+          const date = new Date(pedido.data_pedido);
+          const mesAno = `${date.getMonth() + 1}/${date.getFullYear()}`;
+          acc[mesAno] = (acc[mesAno] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>);
+        
+        console.log('Distribuição de pedidos por mês:', pedidosPorMes);
+
         setPedidos(pedidosMapeados);
         setClientes(clientesMapeados);
         setProdutos(produtosMapeados);
@@ -159,7 +170,8 @@ export const useEcommerceData = () => {
   const calculateKPIs = (filteredPedidos: Pedido[]): KPIs => {
     console.log('Calculando KPIs para', filteredPedidos.length, 'pedidos');
     
-    const faturamentoTotal = filteredPedidos.reduce((sum, p) => sum + (p.valor_total || 0), 0);
+    // Corrigindo cálculo para valores em centavos no JSON
+    const faturamentoTotal = filteredPedidos.reduce((sum, p) => sum + ((p.valor_total || 0) / 100), 0);
     const totalPedidos = filteredPedidos.length;
     const ticketMedio = totalPedidos > 0 ? faturamentoTotal / totalPedidos : 0;
     
@@ -183,16 +195,16 @@ export const useEcommerceData = () => {
           );
           
           if (produto && produto.preco_custo) {
-            // Distribui o custo proporcionalmente
-            custoTotal += produto.preco_custo / produtosList.length;
+            // Distribui o custo proporcionalmente, corrigindo valor em centavos
+            custoTotal += (produto.preco_custo / 100) / produtosList.length;
           } else {
             // Fallback: assume 60% do valor como custo se não encontrar o produto
-            custoTotal += (pedido.valor_total * 0.6) / produtosList.length;
+            custoTotal += ((pedido.valor_total / 100) * 0.6) / produtosList.length;
           }
         });
       } else {
         // Fallback se não há produtos especificados
-        custoTotal += pedido.valor_total * 0.6;
+        custoTotal += (pedido.valor_total / 100) * 0.6;
       }
     });
     

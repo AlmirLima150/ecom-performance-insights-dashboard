@@ -16,7 +16,8 @@ export function UTMSourceChart({ pedidos }: UTMSourceChartProps) {
     if (!acc[source]) {
       acc[source] = { name: source, value: 0, orders: 0 };
     }
-    acc[source].value += pedido.valor_total;
+    // Corrigindo valores que estavam em centavos
+    acc[source].value += pedido.valor_total / 100;
     acc[source].orders += 1;
     return acc;
   }, {} as Record<string, { name: string; value: number; orders: number }>);

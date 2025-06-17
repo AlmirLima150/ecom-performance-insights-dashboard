@@ -33,45 +33,59 @@ export function Dashboard() {
   const filteredPedidos = useMemo(() => getFilteredPedidos(filters), [pedidos, filters, getFilteredPedidos]);
   const kpis = useMemo(() => calculateKPIs(filteredPedidos), [filteredPedidos, calculateKPIs]);
 
-  // Extrair opções para filtros
+  // Extrair opções para filtros baseado nos dados reais
   const filterOptions = useMemo(() => {
+    console.log('Extraindo opções de filtro...');
+    
     const produtosSet = new Set<string>();
     const cidadesSet = new Set<string>();
     const canaisSet = new Set<string>();
     const statusSet = new Set<string>();
 
-    pedidos.forEach(pedido => {
-      if (pedido.produtos_vendidos) {
-        pedido.produtos_vendidos.split(',').forEach(id => {
-          const produto = produtos.find(p => p.id_produto === id.trim());
-          if (produto) produtosSet.add(produto.nome_produto);
-        });
+    // Extrair produtos únicos
+    produtos.forEach(produto => {
+      if (produto.nome_produto) {
+        produtosSet.add(produto.nome_produto);
       }
-      
-      const cliente = clientes.find(c => c.id_cliente === pedido.id_cliente);
-      if (cliente?.cidade) cidadesSet.add(cliente.cidade);
-      
-      if (pedido.utm_source) canaisSet.add(pedido.utm_source);
-      if (pedido.status) statusSet.add(pedido.status);
     });
 
-    return {
+    // Extrair cidades únicas dos clientes
+    clientes.forEach(cliente => {
+      if (cliente.cidade) {
+        cidadesSet.add(cliente.cidade);
+      }
+    });
+
+    // Extrair canais e status únicos dos pedidos
+    pedidos.forEach(pedido => {
+      if (pedido.utm_source) {
+        canaisSet.add(pedido.utm_source);
+      }
+      if (pedido.status) {
+        statusSet.add(pedido.status);
+      }
+    });
+
+    const options = {
       produtos: Array.from(produtosSet).sort(),
       cidades: Array.from(cidadesSet).sort(),
       canais: Array.from(canaisSet).sort(),
       statusOptions: Array.from(statusSet).sort()
     };
+
+    console.log('Opções de filtro extraídas:', options);
+    return options;
   }, [pedidos, clientes, produtos]);
 
   const exportToCSV = () => {
     const csvContent = [
       'Numero Pedido,Data,Cliente,Status,Valor,Pagamento,UTM Source,UTM Medium,UTM Campaign',
       ...filteredPedidos.map(p => 
-        `${p.numero_pedido},${p.data_pedido},${p.nome_cliente},${p.status},${p.valor_total},${p.forma_pagamento},${p.utm_source},${p.utm_medium},${p.utm_campaign}`
+        `${p.numero_pedido || ''},${p.data_pedido || ''},${p.nome_cliente || ''},${p.status || ''},${p.valor_total || ''},${p.forma_pagamento || ''},${p.utm_source || ''},${p.utm_medium || ''},${p.utm_campaign || ''}`
       )
     ].join('\n');
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -105,7 +119,10 @@ export function Dashboard() {
             <CircleDollarSignIcon className="h-8 w-8 text-red-600" />
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Erro ao carregar dados</h2>
-          <p className="text-gray-600">{error}</p>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()} className="bg-blue-600 hover:bg-blue-700">
+            Tentar Novamente
+          </Button>
         </div>
       </div>
     );

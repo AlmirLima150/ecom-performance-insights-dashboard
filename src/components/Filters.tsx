@@ -43,6 +43,15 @@ export function Filters({ filters, onFiltersChange, produtos, cidades, canais, s
     });
   };
 
+  const handleSelectChange = (field: keyof FilterState, value: string) => {
+    // Convert "all" back to empty string for our filter logic
+    const filterValue = value === 'all' ? '' : value;
+    onFiltersChange({
+      ...filters,
+      [field]: filterValue
+    });
+  };
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6 animate-fade-in">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Filtros de Análise</h3>
@@ -96,12 +105,12 @@ export function Filters({ filters, onFiltersChange, produtos, cidades, canais, s
         {/* Produto */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">Produto</label>
-          <Select value={filters.produto} onValueChange={(value) => onFiltersChange({ ...filters, produto: value })}>
+          <Select value={filters.produto || 'all'} onValueChange={(value) => handleSelectChange('produto', value)}>
             <SelectTrigger>
               <SelectValue placeholder="Todos os produtos" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos os produtos</SelectItem>
+              <SelectItem value="all">Todos os produtos</SelectItem>
               {produtos.map(produto => (
                 <SelectItem key={produto} value={produto}>{produto}</SelectItem>
               ))}
@@ -112,12 +121,12 @@ export function Filters({ filters, onFiltersChange, produtos, cidades, canais, s
         {/* Cidade */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">Cidade</label>
-          <Select value={filters.cidade} onValueChange={(value) => onFiltersChange({ ...filters, cidade: value })}>
+          <Select value={filters.cidade || 'all'} onValueChange={(value) => handleSelectChange('cidade', value)}>
             <SelectTrigger>
               <SelectValue placeholder="Todas as cidades" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todas as cidades</SelectItem>
+              <SelectItem value="all">Todas as cidades</SelectItem>
               {cidades.map(cidade => (
                 <SelectItem key={cidade} value={cidade}>{cidade}</SelectItem>
               ))}
@@ -128,12 +137,12 @@ export function Filters({ filters, onFiltersChange, produtos, cidades, canais, s
         {/* Canal */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">Canal</label>
-          <Select value={filters.canal} onValueChange={(value) => onFiltersChange({ ...filters, canal: value })}>
+          <Select value={filters.canal || 'all'} onValueChange={(value) => handleSelectChange('canal', value)}>
             <SelectTrigger>
               <SelectValue placeholder="Todos os canais" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos os canais</SelectItem>
+              <SelectItem value="all">Todos os canais</SelectItem>
               {canais.map(canal => (
                 <SelectItem key={canal} value={canal}>{canal}</SelectItem>
               ))}
@@ -144,12 +153,12 @@ export function Filters({ filters, onFiltersChange, produtos, cidades, canais, s
         {/* Status */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">Status</label>
-          <Select value={filters.status} onValueChange={(value) => onFiltersChange({ ...filters, status: value })}>
+          <Select value={filters.status || 'all'} onValueChange={(value) => handleSelectChange('status', value)}>
             <SelectTrigger>
               <SelectValue placeholder="Todos os status" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos os status</SelectItem>
+              <SelectItem value="all">Todos os status</SelectItem>
               {statusOptions.map(status => (
                 <SelectItem key={status} value={status}>{status}</SelectItem>
               ))}

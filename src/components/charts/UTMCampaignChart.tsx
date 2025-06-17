@@ -1,48 +1,37 @@
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Pedido, Produto } from '@/types/dashboard';
+import { Pedido } from '@/types/dashboard';
 
-interface ProductChartProps {
+interface UTMCampaignChartProps {
   pedidos: Pedido[];
-  produtos: Produto[];
 }
 
-export function ProductChart({ pedidos, produtos }: ProductChartProps) {
-  // Contar vendas por produto baseado no campo produtos_vendidos
-  const productSales = pedidos.reduce((acc, pedido) => {
-    if (pedido.produtos_vendidos) {
-      // Dividir os produtos vendidos por vírgula e processar cada um
-      const produtosList = pedido.produtos_vendidos.split(',').map(p => p.trim()).filter(p => p);
-      
-      produtosList.forEach(produtoNome => {
-        if (!acc[produtoNome]) {
-          acc[produtoNome] = {
-            name: produtoNome,
-            value: 0,
-            quantity: 0
-          };
-        }
-        // Distribui o valor proporcionalmente entre os produtos do pedido
-        acc[produtoNome].value += pedido.valor_total / produtosList.length;
-        acc[produtoNome].quantity += 1;
-      });
+export function UTMCampaignChart({ pedidos }: UTMCampaignChartProps) {
+  // Agrupar vendas por utm_campaign
+  const campaignData = pedidos.reduce((acc, pedido) => {
+    const campaign = pedido.utm_campaign || 'Sem campanha';
+    if (!acc[campaign]) {
+      acc[campaign] = { name: campaign, value: 0, orders: 0 };
     }
+    acc[campaign].value += pedido.valor_total;
+    acc[campaign].orders += 1;
     return acc;
-  }, {} as Record<string, { name: string; value: number; quantity: number }>);
+  }, {} as Record<string, { name: string; value: number; orders: number }>);
 
-  const data = Object.values(productSales)
+  const data = Object.values(campaignData)
     .sort((a, b) => b.value - a.value)
-    .slice(0, 10) // Top 10 produtos
+    .slice(0, 10) // Top 10 campaigns
     .map((item, index) => ({
       ...item,
-      id: `product-${index}` // Adicionar ID único para evitar conflito de keys
+      id: `campaign-${index}`,
+      shortName: item.name.length > 20 ? item.name.substring(0, 20) + '...' : item.name
     }));
 
   return (
     <Card className="shadow-lg border-0 animate-fade-in">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-900">Top Produtos por Faturamento</CardTitle>
+        <CardTitle className="text-lg font-semibold text-gray-900">Vendas por Campanha (UTM Campaign)</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
@@ -56,13 +45,17 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
             />
             <YAxis 
               type="category"
-              dataKey="name" 
+              dataKey="shortName" 
               stroke="#666"
-              fontSize={12}
-              width={150}
+              fontSize={11}
+              width={120}
             />
             <Tooltip 
               formatter={(value: number) => [`R$ ${value.toLocaleString('pt-BR')}`, 'Faturamento']}
+              labelFormatter={(label, payload) => {
+                const fullName = payload?.[0]?.payload?.name || label;
+                return `Campanha: ${fullName}`;
+              }}
               contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',
@@ -72,7 +65,7 @@ export function ProductChart({ pedidos, produtos }: ProductChartProps) {
             />
             <Bar 
               dataKey="value" 
-              fill="#06b6d4"
+              fill="#8b5cf6"
               radius={[0, 4, 4, 0]}
             />
           </BarChart>

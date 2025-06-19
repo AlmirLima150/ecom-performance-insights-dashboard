@@ -63,12 +63,12 @@ export function AppSidebar({ activeSection, onSectionChange }: AppSidebarProps) 
     <Sidebar className="border-r border-gray-200 bg-white">
       <SidebarHeader className="border-b border-gray-200 p-6">
         <div className="flex items-center space-x-2">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-2">
-            <CircleDollarSignIcon className="h-6 w-6 text-white" />
+          <div className="bg-gradient-to-r from-[#662D91] to-[#4A226D] rounded-full p-2">
+            <img src="/assets/SIMBOLO - BRANCO.png" alt="Simbolo viralizy branco" className="w-8 h-8"/>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">E-commerce</h2>
-            <p className="text-sm text-gray-500">Analytics Dashboard</p>
+            <h2 className="text-xl font-bold text-gray-900">Viralizy</h2>
+            <p className="text-sm text-gray-500">Dashboards </p>
           </div>
         </div>
       </SidebarHeader>
